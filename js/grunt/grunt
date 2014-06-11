@@ -1,0 +1,8 @@
+#!/usr/bin/env node --harmony_proxies --harmony_collections
+//#!/usr/bin/env node --use_strict --harmony_proxies --harmony_collections
+// console.log(process.argv);
+// 一度CoffeeScript.runしとかないとstackTraceのsourcemapが効かない
+require('./node_modules/coffee-script').run('null');
+var grunt = require('./node_modules/grunt');
+grunt.cli({stack:true});
+grunt.help.display();
