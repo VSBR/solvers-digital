@@ -1,24 +1,11 @@
 
 {_rename} = require './grunt_tasks/lib/utils'
 _ = require 'lodash'
-staticPath     = "../application/static"
+staticPath     = "../../static"
 
 module.exports = (grunt, config) ->
 
   _config =
-
-    coffee:
-      compile:
-        filesExt:
-          flat: true
-          sha1: true
-          src: 'coffee/**/*.coffee'
-          rename: -> "tmp/#{@dirs.s(0:'js')}/#{@base}.js"
-        options:
-          bare: true      # 関数ラップしない
-          mtime: true     # 更新のあるファイルのみコンパイル
-          sourceMap: true # sourcemapを出力
-          header: true    # version
 
     'commonjs-map':
       debug:
@@ -117,16 +104,8 @@ module.exports = (grunt, config) ->
             __DEBUG__: false
       build:
         files:
-          src: "../application/static/js/package.js"
-          dest: "../application/static/js/package.js"
-
-    regarde:
-      js:
-        files: 'js/**/*.js'
-        tasks: [
-            'j'
-            'livereload'
-        ]
+          src: "../../static/js/package.js"
+          dest: "../../static/js/package.js"
 
     growl:
 #      coffee:
@@ -139,20 +118,6 @@ module.exports = (grunt, config) ->
         'tmp/js'
         'tmp/html'
       ]
-
-    syncFiles:
-      js:
-        options:
-          root: ['tmp/js']
-        files:
-          expand: true
-          src: 'coffee/**/*.{js,coffee}'
-          rename: ->
-            dest = "#{@dirs.s(0:'tmp/js')}/#{@base}.js"
-            if @ext == '.coffee'
-              [dest, dest+'.map']
-            else
-              [dest]
 
   _.merge config, _config
 

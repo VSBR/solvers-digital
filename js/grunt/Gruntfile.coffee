@@ -4,7 +4,7 @@ Array::replace = ->
 
 module.exports = (grunt) ->
 
-  staticPath     = "../application/static"
+  staticPath     = "../../static"
 
   config =
     capture:
@@ -42,19 +42,23 @@ module.exports = (grunt) ->
 
   require('./Gruntfile-js')(grunt, config)
 
+  require('./grunt-extension')(grunt)
+  grunt.initConfig config
 
   #Load Plugin.
+  grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-regarde'
+  grunt.loadNpmTasks 'grunt-contrib-livereload'
+  grunt.loadNpmTasks 'grunt-csso'
 
   grunt.loadTasks "./grunt_tasks"
 
-  #Default task.
-
   grunt.registerTask 'j', 'JavaScriptを結合をするよ (DEBUG)', [
-    'concat:js'
-#    'growl:js'
-]
+    'concat:js',
+    'growl:js'
+  ]
 
   grunt.registerTask 's', 'sassのコンパイルをするよ (DEBUG)', [
     'libsass:debug',     # scssコンパイル
@@ -65,17 +69,6 @@ module.exports = (grunt) ->
   grunt.registerTask 'd', 'sassコンパイル+ja結合をするよ (DEBUG)', ['s', 'j']
 
   #release task.
-  grunt.registerTask 'rc', 'coffeeのコンパイルをするよ (RELEASE)', [
-    # 'clean:coffee'
-    'coffee'
-    'myCopy:pass'
-    'syncFiles:js',      # 要らん js を削除
-    'commonjs-map:release'
-    'concat'
-    'myCopy:static'
-    'uglify'
-    'growl:coffee'
-  ]
   grunt.registerTask 'rj', 'JavaScriptを結合&ミニファイをするよ (RELEASE)', [
     'concat:js'
     'uglify'
