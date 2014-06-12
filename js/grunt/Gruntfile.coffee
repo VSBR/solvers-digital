@@ -41,38 +41,20 @@ module.exports = (grunt) ->
 
 
   require('./Gruntfile-js')(grunt, config)
-  require('./Gruntfile-css')(grunt, config)
 
-  require('./grunt-extension')(grunt)
-  grunt.initConfig config
 
   #Load Plugin.
-  grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
-  grunt.loadNpmTasks 'grunt-regarde'
-  grunt.loadNpmTasks 'grunt-contrib-livereload'
-  grunt.loadNpmTasks 'grunt-styleguide'
-  grunt.loadNpmTasks 'grunt-csso'
-  grunt.loadNpmTasks 'grunt-spritesmith'
 
   grunt.loadTasks "./grunt_tasks"
 
   #Default task.
-  grunt.registerTask 'default', '変更を見張り、自動コンパイル', 'w'
-  grunt.registerTask 'w', '変更を見張り、自動コンパイル', ['livereload-start', 'regarde']
 
-  grunt.registerTask 'c', 'coffeeのコンパイルをするよ (DEBUG)', [
-    'coffee',              # tmp/js にコンパイル
-    'myCopy:pass',         # coffee/**/*.js を tmp/js にコピー
-    'syncFiles:js',        # 要らん js を削除
-    'commonjs-map:debug',  # requireモジュール使える形に tmp/js/**/*.js を package.js にパッキング
-    'concat',              # back_door.js から back_door.html 作成
-    'myCopy:static',       # static にコピー
-    'growl:coffee'         # growl通知
-  ]
-
-  grunt.registerTask 'j', 'JavaScriptを結合をするよ (DEBUG)', ['concat:js', 'growl:js']
+  grunt.registerTask 'j', 'JavaScriptを結合をするよ (DEBUG)', [
+    'concat:js'
+#    'growl:js'
+]
 
   grunt.registerTask 's', 'sassのコンパイルをするよ (DEBUG)', [
     'libsass:debug',     # scssコンパイル
@@ -81,8 +63,6 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'd', 'sassコンパイル+ja結合をするよ (DEBUG)', ['s', 'j']
-
-  grunt.registerTask 'l', 'lightpngで差分があったファイルを圧縮', ['lightpng']
 
   #release task.
   grunt.registerTask 'rc', 'coffeeのコンパイルをするよ (RELEASE)', [
@@ -112,14 +92,6 @@ module.exports = (grunt) ->
     'libsass:release',     # scssコンパイル
     'growl:sass'
     'styleguide'
-  ]
-
-  grunt.registerTask 'styleguide', 'KSS · Knyle Style Sheets - Warpspire', [
-    'concat:sass'
-    'clean:kss'
-    'kss'
-    'replace'
-    'growl:kss'
   ]
 
   grunt.registerTask 'r', 'sassコンパイル+js結合をするよ (DEBUG)', [
