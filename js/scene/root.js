@@ -57,12 +57,3 @@ var AppNeoPoodle = function (view) {
 
 // VIEW はarticle_idで、base.htmlより取得
 var appNeoPoodle = new AppNeoPoodle(VIEW);
-$(function () {
-
-        "use strict";
-
-        appSolvers.runUiInitFunction();
-        appSolvers.runWebSiteInitFunction(VIEW);
-        ko.applyBindings(appSolvers.getViewModel());
-    }
-);

@@ -64,11 +64,11 @@ module.exports = (grunt, config) ->
         dest: "tmp/js/ex_admin.js"
       js:
         src:[
-          './js/lib/!(underscore)*.js'
-          './js/root.js'
-          './js/ui/**/*.js'
-          './js/website/**/*.js'
-          './js/execute.js'
+          '../lib/*.js'
+          '../scene/root.js'
+#          './js/ui/**/*.js'
+#          './js/website/**/*.js'
+          '../scene/execute.js'
         ]
         dest: "#{staticPath}/js/package.js"
 
