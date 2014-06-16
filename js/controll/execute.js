@@ -1,9 +1,9 @@
 $(function () {
 
         "use strict";
-
+        console.log("execute.js");
         appSolvers.runUiInitFunction();
-        appSolvers.runWebSiteInitFunction(VIEW);
+        appSolvers.runSceneInitFunction("main");
         ko.applyBindings(appSolvers.getViewModel());
     }
 );

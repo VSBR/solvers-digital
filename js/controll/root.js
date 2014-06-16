@@ -1,31 +1,33 @@
 // コマンドパターンを踏襲して設計
-var AppNeoPoodle = function (view) {
+var AppSolvers = function () {
 
     "use strict";
 
+    console.log("root.js");
+
     // when using Zepto + simply deferred
-    Deferred.installInto(Zepto);
+//    Deferred.installInto(Zepto);
 
     var viewModel = {};
     // ui関連の画面共通のメソッドを収納するobject
     var ui = {};
-    // ページ固有のメソッドを収納するobject
-    var webSite = {};
+    // シーン固有のメソッドを収納するobject
+    var scene = {};
 
     this.getViewModel = function () {
         return viewModel;
-    }
+    };
     this.setViewModel = function (obj) {
         viewModel = obj;
-    }
+    };
 
     this.getUi = function () {
         return ui;
     };
 
-    this.getWebSite = function () {
-        return webSite;
-    }
+    this.getScene = function () {
+        return scene;
+    };
 
     // ui.xxx.init関数を全て実行
     this.runUiInitFunction = function () {
@@ -42,9 +44,9 @@ var AppNeoPoodle = function (view) {
     };
 
     // ページ固有のinit関数を実行
-    this.runWebSiteInitFunction = function (view) {
+    this.runSceneInitFunction = function (scene_name) {
         try {
-            webSite[view].init();
+            scene[scene_name].init();
         } catch (exception) {
 //            console.log("--- ↓↓↓ init関数を定義していますか? ↓↓↓ ---");
 //            console.log("website." + view);
@@ -52,8 +54,6 @@ var AppNeoPoodle = function (view) {
             console.log(exception);
         }
     };
-
 }
 
-// VIEW はarticle_idで、base.htmlより取得
-var appNeoPoodle = new AppNeoPoodle(VIEW);
+var appSolvers = new AppSolvers();
