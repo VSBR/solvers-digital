@@ -1,6 +1,6 @@
-appSolvers.getScene().main = {
+appSolvers.getScene().title = {
     init: function () {
-        console.log("main : init");
+        console.log("title : init");
 
         "use strict";
 
@@ -12,7 +12,7 @@ appSolvers.getScene().main = {
             console.log("solversTest");
         }
 
-        var MainViewModel = function (model) {
+        var TitleViewModel = function (model) {
             var self = this;
 
 /*
@@ -26,12 +26,11 @@ appSolvers.getScene().main = {
             });
         };
 
-        appSolvers.getViewModel().main = {};
+        appSolvers.getViewModel().title = {};
 
         var model= new Model();
-        var mainViewModel = new MainViewModel(model);
-        appSolvers.getViewModel().main = mainViewModel;
-        appSolvers.runSceneInitFunction("title");
+        var titleViewModel = new TitleViewModel(model);
+        appSolvers.getViewModel().title = titleViewModel;
 
     }
 };
