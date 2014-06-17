@@ -1,0 +1,12 @@
+.clickTelop {
+	position: absolute;
+	width: 600px;
+	color: #000000;
+	background-color: #ffffff;
+	-webkit-animation: clickTelopAnim 2s infinite;
+}
+@-webkit-keyframes clickTelopAnim{
+	0%{opacity:1;}
+	50%{opacity:0;}
+	100%{opacity:1;}
+}

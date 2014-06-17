@@ -209,9 +209,11 @@ appSolvers.getUi().display = {
 
         viewModel.uiDisplayChange = function (scene) {
             console.log("uiDisplayChange : " + scene);
-            var load_html = "./" + scene + ".html";
+            var load_html = scene + ".html";
             console.log(load_html);
-            $('#displayFrame').load(load_html);
+            console.log($('#displayFrame'));
+            $('#displayFrame').src = load_html;
+//            $('#displayFrame').load(load_html);
         };
 
     }
@@ -276,7 +278,6 @@ appSolvers.getScene().title = {
                 console.log("title : init display");
                 appSolvers.getViewModel().uiDisplayChange("title");
             }
-
 
 /*
             self.model = model;

@@ -23,7 +23,6 @@ appSolvers.getScene().title = {
                 appSolvers.getViewModel().uiDisplayChange("title");
             }
 
-
 /*
             self.model = model;
             // Modelの変化を監視
