@@ -116,10 +116,15 @@ var AppSolvers = function () {
 //    Deferred.installInto(Zepto);
 
     var viewModel = {};
+
     // ui関連の画面共通のメソッドを収納するobject
     var ui = {};
+
     // シーン固有のメソッドを収納するobject
     var scene = {};
+
+    //ゲームデータ
+    var gameData = {};
 
     this.getViewModel = function () {
         return viewModel;
@@ -135,6 +140,18 @@ var AppSolvers = function () {
     this.getScene = function () {
         return scene;
     };
+
+    this.getGameData = function() {
+        return gameData;
+    };
+
+    this.setGameData = function(obj){
+        gameData = obj;
+    }
+
+    this.gameDataInit = function() {
+        gameData["gameData"].init();
+    }
 
     // ui.xxx.init関数を全て実行
     this.runUiInitFunction = function () {
@@ -164,6 +181,41 @@ var AppSolvers = function () {
 }
 
 var appSolvers = new AppSolvers();
+appSolvers.getGameData().gameData = {
+    init: function () {
+        console.log("gameData : init");
+
+        "use strict";
+
+        var GameDataModel = function () {
+            this.data = ko.observable();
+        };
+        
+        GameDataModel.prototype.DataInit = function () {
+            console.log("DataInit");
+        }
+
+        var gameDataModel= new GameDataModel();
+        appSolvers.getGameData().gameData = gameDataModel;
+    }
+};
+appSolvers.getUi().display = {
+    init: function () {
+
+        "use strict";
+
+        var viewModel = appSolvers.getViewModel();
+        viewModel.uiDisplay = ko.observable(0);
+
+        viewModel.uiDisplayChange = function (scene) {
+            console.log("uiDisplayChange : " + scene);
+            var load_html = "./" + scene + ".html";
+            console.log(load_html);
+            $('#displayFrame').load(load_html);
+        };
+
+    }
+}
 appSolvers.getScene().main = {
     init: function () {
         console.log("main : init");
@@ -197,7 +249,6 @@ appSolvers.getScene().main = {
         var model= new Model();
         var mainViewModel = new MainViewModel(model);
         appSolvers.getViewModel().main = mainViewModel;
-        appSolvers.runSceneInitFunction("title");
 
     }
 };
@@ -206,7 +257,7 @@ appSolvers.getScene().title = {
         console.log("title : init");
 
         "use strict";
-
+/*
         var Model = function (model_type) {
             this.data = ko.observable();
         };
@@ -214,26 +265,33 @@ appSolvers.getScene().title = {
         Model.prototype.solversTest = function () {
             console.log("solversTest");
         }
-
-        var TitleViewModel = function (model) {
+*/
+//        var TitleViewModel = function (model) {
+        var TitleViewModel = function () {
             var self = this;
 
-/*
-            self.main = function () {
-            }
-*/
+            self.is_saveData = ko.observable(false);
 
+            self.initDisplay = function () {
+                console.log("title : init display");
+                appSolvers.getViewModel().uiDisplayChange("title");
+            }
+
+
+/*
             self.model = model;
             // Modelの変化を監視
             self.model.data.subscribe(function (data) {
             });
+*/
         };
 
-        appSolvers.getViewModel().title = {};
-
-        var model= new Model();
-        var titleViewModel = new TitleViewModel(model);
+//        var model= new Model();
+//        var titleViewModel = new TitleViewModel(model);
+        var titleViewModel = new TitleViewModel();
         appSolvers.getViewModel().title = titleViewModel;
+
+        appSolvers.getViewModel().title.initDisplay();
 
     }
 };
@@ -242,7 +300,8 @@ $(function () {
         "use strict";
         console.log("execute.js");
         appSolvers.runUiInitFunction();
-        appSolvers.runSceneInitFunction("main");
+        appSolvers.gameDataInit();
+        appSolvers.runSceneInitFunction("title");
         ko.applyBindings(appSolvers.getViewModel());
     }
 );

@@ -9,10 +9,15 @@ var AppSolvers = function () {
 //    Deferred.installInto(Zepto);
 
     var viewModel = {};
+
     // ui関連の画面共通のメソッドを収納するobject
     var ui = {};
+
     // シーン固有のメソッドを収納するobject
     var scene = {};
+
+    //ゲームデータ
+    var gameData = {};
 
     this.getViewModel = function () {
         return viewModel;
@@ -28,6 +33,18 @@ var AppSolvers = function () {
     this.getScene = function () {
         return scene;
     };
+
+    this.getGameData = function() {
+        return gameData;
+    };
+
+    this.setGameData = function(obj){
+        gameData = obj;
+    }
+
+    this.gameDataInit = function() {
+        gameData["gameData"].init();
+    }
 
     // ui.xxx.init関数を全て実行
     this.runUiInitFunction = function () {

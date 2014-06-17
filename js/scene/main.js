@@ -31,7 +31,6 @@ appSolvers.getScene().main = {
         var model= new Model();
         var mainViewModel = new MainViewModel(model);
         appSolvers.getViewModel().main = mainViewModel;
-        appSolvers.runSceneInitFunction("title");
 
     }
 };

@@ -12,6 +12,7 @@ module.exports = (grunt, config) ->
         src:[
           '../lib/*.js'
           '../controll/root.js'
+          '../controll/gameData.js'
           '../ui/*.js'
           '../scene/*.js'
           '../controll/execute.js'

@@ -3,7 +3,8 @@ $(function () {
         "use strict";
         console.log("execute.js");
         appSolvers.runUiInitFunction();
-        appSolvers.runSceneInitFunction("main");
+        appSolvers.gameDataInit();
+        appSolvers.runSceneInitFunction("title");
         ko.applyBindings(appSolvers.getViewModel());
     }
 );
