@@ -212,7 +212,7 @@ appSolvers.getUi().display = {
             var load_html = scene + ".html";
             console.log(load_html);
             console.log($('#displayFrame'));
-            $('#displayFrame').src = load_html;
+            window.location = load_html;
 //            $('#displayFrame').load(load_html);
         };
 
@@ -276,9 +276,16 @@ appSolvers.getScene().title = {
 
             self.initDisplay = function () {
                 console.log("title : init display");
-                appSolvers.getViewModel().uiDisplayChange("title");
+//                appSolvers.getViewModel().uiDisplayChange("title");
             }
 
+            self.changeScene = function(){
+                appSolvers.getViewModel().uiDisplayChange("opening");
+            }
+
+            self.testFunc = function(){
+                console.log("* * * * *");
+            }
 /*
             self.model = model;
             // Modelの変化を監視

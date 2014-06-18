@@ -11,7 +11,7 @@ appSolvers.getUi().display = {
             var load_html = scene + ".html";
             console.log(load_html);
             console.log($('#displayFrame'));
-            $('#displayFrame').src = load_html;
+            window.location = load_html;
 //            $('#displayFrame').load(load_html);
         };
 
