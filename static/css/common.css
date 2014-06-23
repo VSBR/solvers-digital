@@ -4,6 +4,14 @@ body {
     text-align: center;
     background-color: #000000;
 }
+
+//common
+
+.noDecoration {
+    text-decoration: none;
+}
+
+//parts
 .contents {
     text-align: center;
     width: 600px;
@@ -11,6 +19,21 @@ body {
 .gameTitleText {
     color: #ffffff;
 }
+
+.textArea{
+    padding: 10px;
+    text-align: left;
+    width: 500px;
+    color: #000000;
+}
+
+.textAreaBack{
+    text-align: left;
+    width: 550px;
+    background-color: #ffffff;
+    opacity: 0.5;
+}
+
 .mainImage {
     width: 600px;
     height: auto;

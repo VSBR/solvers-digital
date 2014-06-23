@@ -1,5 +1,5 @@
-.openingText {
-    text-align: center;
+.openingTextArea{
+    text-align: left;
+    width: 500px;
     color: #000000;
-    background-color: #FFFFFF
 }
