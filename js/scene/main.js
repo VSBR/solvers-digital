@@ -39,7 +39,7 @@ appSolvers.getScene().main = {
             self.scene = ko.observable();
 
             //ui elements
-            self.uiDisplayBlock = $("")
+            self.uiDisplayBlock = $("");
 
             //game data init
 
@@ -81,7 +81,7 @@ appSolvers.getScene().main = {
         appSolvers.getScene().main = mainViewModel;
 
         //init
-        
+
 
         console.log("main start");
         appSolvers.getScene().main.scene("START");
